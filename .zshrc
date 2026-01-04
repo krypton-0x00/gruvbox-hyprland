@@ -1,156 +1,173 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-# Arch Linux plugin paths
+# source ~/.cache/wal/colors.sh
+# (cat ~/.cache/wal/sequences &)
+
+# =========================
+# BASIC ZSH SETUP
+# =========================
+export ZDOTDIR="$HOME"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="less"
+
+setopt autocd
+setopt correct
+setopt extendedglob
+setopt nobeep
+setopt hist_ignore_dups
+setopt share_history
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# =========================
+# KEYBINDINGS (IMPORTANT)
+# =========================
+
+# Backspace should delete ONE character
+bindkey '^?' backward-delete-char   # DEL
+bindkey '^H' backward-delete-char   # BS
+
+# Word deletion (standard)
+bindkey '^W' backward-kill-word     # Ctrl+W
+bindkey '^[^?' backward-kill-word   # Alt+Backspace# Ctrl + Arrow word movement
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
+# Better history search
+bindkey '^R' history-incremental-search-backward
+
+# =========================
+# COMPLETION
+# =========================
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+
+
+# =========================
+# Autosuggestions
+# =========================
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Faster + subtle autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
 
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# =========================
+# Autosuggestions
+# =========================
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# Faster + subtle autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim' else
-#   export EDITOR='nvim'
+# # =========================
+# # PYWAL COLORS
+# # =========================
+# if [[ -f ~/.cache/wal/colors.sh ]]; then
+#   source ~/.cache/wal/colors.sh
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+# =========================
+# STARSHIP PROMPT
+# =========================
+eval "$(starship init zsh)"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# =========================
+# MODERN CLI ALIASES
+# =========================
 
-# Enable colors
-autoload -U colors && colors
-
-# Gruvbox-ish colors
-GRUV_GREEN="%F{108}"   # soft gruvbox green
-GRUV_BLUE="%F{109}"    # gruvbox blue
-RESET="%f"
-
-# Bash-like prompt with square brackets
-PROMPT='${GRUV_GREEN}[%n@%m]${RESET}: ${GRUV_BLUE}%~${RESET} $ '
-
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
-
-# ---------- Word navigation ----------
-autoload -Uz select-word-style
-select-word-style bash
-
-# Ctrl + Left / Right
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;5C' forward-word
-
-# Ctrl + Backspace (delete word backward)
-bindkey '^H' backward-kill-word
-bindkey '^?' backward-delete-char
-
-
-
-# ---------- Modern replacements ----------
-alias ls='eza --icons --group-directories-first'
-alias ll='eza -lh --icons --git'
-alias la='eza -lah --icons --git'
-
-alias cat='bat --style=plain'
-alias find='fd'
-alias grep='rg'
-
-# Safer defaults
+# safer defaults
 alias rm='rm -i'
-alias cp='cp -iv'
-alias mv='mv -iv'
-#CONFIGS
-alias hypredit='nvim ~/hyprland-dotfiles/hypr/hyprland.conf'
-alias nvimedit='nvim ~/hyprland-dotfiles/nvim/'
-alias wayedit='nvim ~/hyprland-dotfiles/waybar/config.jsonc'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# modern replacements
+alias ls='eza --icons --group-directories-first'
+alias ll='eza -l --icons --git'
+alias la='eza -la --icons --git'
+alias tree='eza --tree --icons'
+
+alias cat='bat'
+alias nano='nvim'
+alias grep='rg'
+alias find='fd'
+alias du='dust'
+alias df='duf'
+alias top='btop'
+alias ps='procs'
+
+# git
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+
+# neovim
+alias v='nvim'
+alias vim='nvim'
+
+# arch helpers
+alias pac='sudo pacman'
+alias paci='sudo pacman -S'
+alias pacr='sudo pacman -Rns'
+alias pacu='sudo pacman -Syu'
+alias yayu='yay -Syu'
+
+# hyprland
+alias hypr-reload='hyprctl reload'
+alias hypr-logs='journalctl --user -u hyprland -f'
+
+# misc
+alias cls='clear'
+alias mkdir='mkdir -pv'
+
+# =========================
+# ENVIRONMENT PATHS
+# =========================
+export PATH="$HOME/.local/bin:$PATH"
+
+# =========================
+# BETTER MAN COLORS
+# =========================
+export LESS_TERMCAP_mb=$'\e[1;31m'
+export LESS_TERMCAP_md=$'\e[1;36m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;44;33m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;32m'
+export LESS_TERMCAP_ue=$'\e[0m'
+
+# =========================
+# START TMUX (OPTIONAL)
+# =========================
+# Uncomment if you want auto-tmux
+# if [[ -z "$TMUX" ]] && [[ "$TERM" != "linux" ]]; then
+#   tmux attach || tmux new
+# fi
+
+PROMPT='%F{green}[%n@%m]%f %F{yellow}%~%f %# '
+# ~/.zshrc
+
+# eval "$(starship init zsh)"
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats 'git:(%b)'
+zstyle ':vcs_info:*' enable git
+
+PROMPT='%F{green}[ %n@%m ]%f  %F{yellow}%1~%f  %F{red}${vcs_info_msg_0_}%f
+❯ '
 
 
-eval "$(_KHAL_COMPLETE=zsh_source khal)"
+
