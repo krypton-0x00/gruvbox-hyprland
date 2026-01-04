@@ -1,21 +1,25 @@
 require "nvchad.mappings"
 
+-- add yours here
+
 local map = vim.keymap.set
 local del = vim.keymap.del
 
--- Disable default <leader>e (NvimTree)
-del("n", "<leader>e")
+-- Remove default diagnostic keybinds
+pcall(del, "n", "<leader>e")
 
--- Custom mappings
 map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+map("i", "jk", "<ESC>")
 
--- Show diagnostics for current line
-map("n", "<leader>e", function()
-  vim.diagnostic.open_float(nil, { focus = false })
-end, { desc = "Show line diagnostics" })
 
--- Optional: diagnostic navigation
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+vim.keymap.set("n", "<leader>e", function()
+  vim.diagnostic.open_float(nil, {
+    focus = false,
+    scope = "line",
+    border = "rounded",
+    source = "always",
+  })
+end, { desc = "Line diagnostics popup" })
 
+
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

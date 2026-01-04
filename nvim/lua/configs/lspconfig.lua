@@ -1,15 +1,26 @@
--- Load NvChad default LSP settings
 require("nvchad.configs.lspconfig").defaults()
 
--- Enable LSP servers (NvChad + Neovim 0.10+ style)
+-- LSP servers
 local servers = {
   "html",
   "cssls",
-
-  "clangd",        -- C / C++
-  "rust_analyzer", -- Rust
-  "nil_ls",        -- Nix
+  "clangd",          -- C & C++
+  "rust_analyzer",
 }
 
 vim.lsp.enable(servers)
+
+-- Auto-format on save (Rust + C + C++)
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.rs", "*.c", "*.cpp", "*.h", "*.hpp" },
+  callback = function()
+    vim.lsp.buf.format({
+      async = false,
+      filter = function(client)
+        return client.name == "rust_analyzer"
+            or client.name == "clangd"
+      end,
+    })
+  end,
+})
 

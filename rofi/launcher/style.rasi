@@ -1,4 +1,19 @@
 @theme "~/.config/rofi/themes.rasi"
+/*****----- Colors (Global) -----*****/
+* {
+    background:        #0b1b0f;
+    background-alt:    #122417;
+
+    main-bg:           #0b1b0f;
+    main-fg:           #d5c4a1;
+
+    active:            #98971a;
+    border:            #98971a;
+
+    select-bg:         #122417;
+    select-fg:         #d5c4a1;
+}
+
 
 /*****----- Configuration -----*****/
 configuration {
