@@ -1,0 +1,138 @@
+/* =======================================================
+   GRUVBOX GREEN – ROFI THEME
+   ======================================================= */
+
+* {
+    font: "JetBrains Mono Nerd Font 12";
+
+    bg:         #0b1b0f;
+    bg-alt:     #122417;
+    fg:         #d5c4a1;
+    accent:     #98971a;
+    accent-alt: #b8bb26;
+    border:     #98971a;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+/* =======================================================
+   WINDOW
+   ======================================================= */
+
+window {
+    location: center;
+    anchor: center;
+    width: 420px;
+    border: 2px;
+    border-color: @border;
+    border-radius: 8px;
+    background-color: @bg;
+}
+
+/* =======================================================
+   MAIN LAYOUT
+   ======================================================= */
+
+mainbox {
+    padding: 10px;
+    spacing: 10px;
+    background-color: transparent;
+    children: [ inputbar, listview ];
+}
+
+/* =======================================================
+   INPUT BAR
+   ======================================================= */
+
+inputbar {
+    padding: 10px;
+    spacing: 10px;
+    border-radius: 6px;
+    background-color: @bg-alt;
+    border: 1px;
+    border-color: @border;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @accent;
+}
+
+entry {
+    placeholder: "Search…";
+    placeholder-color: @fg;
+    background-color: transparent;
+    text-color: @fg;
+}
+
+/* =======================================================
+   LIST VIEW
+   ======================================================= */
+
+listview {
+    lines: 7;
+    spacing: 6px;
+    scrollbar: false;
+    background-color: transparent;
+}
+
+/* =======================================================
+   ELEMENTS
+   ======================================================= */
+
+element {
+    padding: 8px;
+    spacing: 10px;
+    border-radius: 6px;
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element normal.normal {
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+element alternate.normal {
+    background-color: transparent;
+}
+
+element-icon {
+    size: 24px;
+    text-color: inherit;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+/* =======================================================
+   MESSAGE (ERRORS / EMPTY)
+   ======================================================= */
+
+message {
+    padding: 10px;
+    background-color: @bg-alt;
+    border-radius: 6px;
+}
+
+textbox {
+    text-color: @fg;
+}
+
+/* =======================================================
+   SCROLLBAR (DISABLED BUT STYLED)
+   ======================================================= */
+
+scrollbar {
+    handle-width: 6px;
+    handle-color: @accent;
+    background-color: @bg;
+}
+

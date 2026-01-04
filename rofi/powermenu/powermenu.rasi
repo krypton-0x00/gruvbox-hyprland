@@ -1,0 +1,15 @@
+@theme "~/.config/rofi/gruvbox-green.rasi"
+
+/* Slightly smaller, centered */
+window {
+    width: 300px;
+}
+
+listview {
+    lines: 5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+}
+
