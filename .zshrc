@@ -168,6 +168,8 @@ zstyle ':vcs_info:*' enable git
 
 PROMPT='%F{green}[ %n@%m ]%f  %F{yellow}%1~%f  %F{red}${vcs_info_msg_0_}%f
 ❯ '
-
+#
+# sleep 0.2
+# tmux
 
 

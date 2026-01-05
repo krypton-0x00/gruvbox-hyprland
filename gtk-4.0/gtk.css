@@ -1,0 +1,6 @@
+@define-color accent_color #98971a;
+
+*:selected {
+  background-color: @accent_color;
+}
+
