@@ -133,6 +133,9 @@ alias hypr-logs='journalctl --user -u hyprland -f'
 alias cls='clear'
 alias mkdir='mkdir -pv'
 
+#WM
+alias chadwm='startx ~/.config/chadwm/scripts/run.sh'
+
 # =========================
 # ENVIRONMENT PATHS
 # =========================
